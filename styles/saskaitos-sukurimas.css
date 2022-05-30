@@ -11,9 +11,13 @@ body {
 }
 .new-account-h{
     margin-top: 80px;
-    width: 100%;
+    width: 800px;
     text-align:center;
-
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding-bottom: 10px;
+    border-bottom: 2px solid orangered;
+    font-size: 30px;
 }
 .new-account-form{
     margin: 80px;
@@ -32,10 +36,10 @@ body {
 .new-accout-data > input{
     width: 250px;
     height: 35px;
-    font-size: 20px;
+    font-size: 18px;
     font-style: italic;
     padding: 10px 10px;
-
+    border: 2px solid #999
 }
 .new-accout-data > input:focus-visible{
     outline: unset;

@@ -1,10 +1,21 @@
 <?php
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    echo '<pre>';
-    print_r($_POST);
+    
+    if(!file_exists('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json')){
+        file_put_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json', json_encode([]));
+
+    } 
+    $_POST['suma'] = 0;
+    $ID = $_POST['asmens-kodas'];
+       
+    $klientai = json_decode(file_get_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json'), true);    
+    $klientai[$ID] = $_POST;
+    file_put_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json', json_encode($klientai));
+
+    header('Location: https://localhost/bit/3-bank/php_pages/saskaitosSukurimas.php');
+    die;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
