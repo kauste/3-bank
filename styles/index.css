@@ -9,5 +9,16 @@ body * {
 
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(246, 246, 246);
+}
+.moto{
+    display: flex;
+    flex-direction: column;
+    row-gap:30px;
+    justify-self: center;
+    align-items: center;
+    margin-top: 150px;
+    color: rgb(62, 61, 61);
+
 }
 
