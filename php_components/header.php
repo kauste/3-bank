@@ -1,7 +1,6 @@
 <?php 
 defined('KEY') or die;
-
-echo '
+?>
     <nav class="header-nav">
         <div class="nav-logo">
             <img src="../images/pig-icon.png" alt="Pig_icon"></img>
@@ -14,5 +13,4 @@ echo '
         <a class="nav-link" href="./pridetiLesas.php">Pridėti lėšas</a>
         <a class="nav-link" href="./nuskaiciuotiLesas.php">Nuskaičiuoti lėšas</a>
         <div>
-    </nav> ';
-?>
+    </nav> 
