@@ -3,10 +3,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isSet($_GET['id'])){
     $nuskaiciuoti = $_POST['nuskaiciuoti'];
     $clients = json_decode(file_get_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json'), true);
     $client = $clients[$_GET['id']];
-    $client['suma'] -= $nuskaiciuoti;
-    $clients[$_GET['id']] = $client;
-    file_put_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json', json_encode($clients));
-    header('Location: https://localhost/bit/3-bank/php_pages/nuskaiciuotiLesas.php?prideta=1');
+    if ($nuskaiciuoti > 0 && $nuskaiciuoti <= $client['suma']) {
+        $client = $clients[$_GET['id']];
+        $client['suma'] -= $nuskaiciuoti;
+        $clients[$_GET['id']] = $client;
+        file_put_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json', json_encode($clients));
+        header('Location: https://localhost/bit/3-bank/php_pages/nuskaiciuotiLesas.php?id='. $_GET['id'] . '&nuskaiciuota=1');
+    }  elseif ($nuskaiciuoti < 0) {
+        file_put_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json', json_encode($clients));
+        header('Location: https://localhost/bit/3-bank/php_pages/nuskaiciuotiLesas.php?id='. $_GET['id'] . '&error=1');
+        die;
+    }   elseif ($nuskaiciuoti > $clients['suma']){
+        file_put_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json', json_encode($clients));
+        header('Location: https://localhost/bit/3-bank/php_pages/nuskaiciuotiLesas.php?id='. $_GET['id'] . '&error=2');
+        die;
+    }
 }
 ?>
 
@@ -38,17 +49,26 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isSet($_GET['id'])){
             <button class="nuskaiciuoti-button" type="submit">Nuskaičiuoti</button>
         </form>
     <?php
-    } elseif (isSet($_GET['nuskaiciuota'])){
-    ?> <main class="nustkaiciuota-main">
-            <div class="nustkaiciuota"> Pasirinkta suma nuskaičiuota iš nurodytos sąskaitos. Norėdami vėl nuskaičiuoti pinigus, prašome pasirinkti iš sąskaitų sąrašo</div>
-            <a class ="saskaitu-sarasas "href="https://localhost/bit/3-bank/php_pages/saskaituSarasas.php">Sąskaitų sąrašas</a>
-        </main>
-    <?php } else { ?>
-        <main class="choose-main">
+        file_put_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json', json_encode($clients));
+    } else {
+     ?> <main class="choose-main">
             <div class="choose">Prašome pasirinkti sąskaitą, iš kurios norite nuskaičiuoti pinigus.</div>
              <a class ="saskaitu-sarasas" href="https://localhost/bit/3-bank/php_pages/saskaituSarasas.php">Sąskaitų sąrašas</a>
         </main>
     <?php 
-    } ?>
+    } 
+    if(isSet($_GET['error']) && $_GET['error'] == 1) {
+    ?>
+        <div class="error">KLAIDA! Minusinės sumos nuskaičiuoti negalima!</div>
+    <?php
+    } elseif(isSet($_GET['error']) && $_GET['error'] == 2) {
+    ?>
+        <div class="error">KLAIDA! Jūs mėginate nuskaičiuoti didesnę sumą nei yra kliento sąskaitoje!</div>
+    <?php
+     } elseif (isSet($_GET['nuskaiciuota'])) {
+    ?> 
+        <div class="no-error"> Pasirinkta suma nuskaičiuota iš kliento sąskaitos.</div>
+    <?php
+     }?>
 </body>
 </html>

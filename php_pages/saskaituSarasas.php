@@ -7,12 +7,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $targetElement = $klientai[$ID];
     if ($targetElement['suma'] == 0){
         unset($klientai[$ID]);
-        file_put_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json', json_encode($klientai));     header('Location: https://localhost/bit/3-bank/php_pages/saskaituSarasas.php');
+        file_put_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json', json_encode($klientai));     
+        header('Location: https://localhost/bit/3-bank/php_pages/saskaituSarasas.php');
     } else {
         $_SESSION['sum-error'] = $targetElement;
         header('Location: https://localhost/bit/3-bank/php_pages/saskaituSarasas.php?sum-error=1');
     }
-
 }
 ?>
 <!DOCTYPE html>
@@ -41,7 +41,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             </div>
         <?php
         $data = json_decode(file_get_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json'), true);
-        
         function sortBySurname ($a, $b) {
             return $a['pavarde'] <=> $b['pavarde'];
         }
