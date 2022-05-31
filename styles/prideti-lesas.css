@@ -1,0 +1,81 @@
+body,
+body * {
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+h3{
+    margin: 80px 0;
+    width: 500px;
+    text-align:center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding-bottom: 10px;
+    border-bottom: 2px solid orangered;
+    font-size: 30px;;
+}
+.prideti-form{
+    width: 50%;
+    margin-left: 25%;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: center;
+}
+.prideti-varas{
+    font-size: 20px;
+}
+.prideti-input, .prideti-sask-likutis{
+    width: 250px;
+    height: 35px;
+    font-size: 18px;
+    font-style: italic;
+    padding: 10px;
+    border: 2px solid #999;
+    line-height: 15px;
+    text-align: end;
+}
+.prideti-sask-likutis{
+    justify-self: flex-end;
+}
+.prideti-button, .saskaitu-sarasas{
+    height: 40px;
+    width:150px;
+    background-color: orange;
+    border: 3px solid rgb(209, 137, 2);
+    box-shadow: 0 2px 6px #999;
+    justify-self: center;
+    text-align: center;
+    line-height: 34px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+
+.prideti-button:hover{
+    background-color:rgb(209, 137, 2);
+    cursor: pointer;
+}
+
+.prideta-main, .choose-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 30px;
+}
+.choose, .prideta{
+    color: orangered;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    margin-top: 80px;
+}
+.saskaitu-sarasas:hover{
+    background-color: rgb(209, 137, 2);
+    cursor: pointer;
+}

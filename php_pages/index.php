@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../styles/index.css">
     <title>Home</title>
 </head>
-<body>
+<body class="index">
     <?php 
     define('KEY', 1);
     require 'C:/xampp/htdocs/bit/3-bank/php_components/header.php';

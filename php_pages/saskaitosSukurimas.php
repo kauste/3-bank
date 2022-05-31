@@ -3,7 +3,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
     if(!file_exists('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json')){
         file_put_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json', json_encode([]));
-
     } 
     $_POST['suma'] = 0;
     $ID = $_POST['asmens-kodas'];
@@ -46,10 +45,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <input type="text" name="asmens-kodas" id="" required>
         </div>
         <?php
-        $accountNum = strval(rand(0, 9)) . strval(rand(0, 9))  . strval(rand(0, 9))  . strval(rand(0, 9)) . strval(rand(0, 9))  . strval(rand(0, 9)) . strval(rand(0, 9)) . strval(rand(0, 9))  . strval(rand(0, 9))  . strval(rand(0, 9)) . strval(rand(0, 9));
-        $bankNum = strval(77777);
-        $controlSymbols = '01';
-        $IBAN = 'LT' . $controlSymbols .$bankNum . $accountNum
+            $accountNum = strval(rand(0, 9)) . strval(rand(0, 9))  . strval(rand(0, 9))  . strval(rand(0, 9)) . strval(rand(0, 9))  . strval(rand(0, 9)) . strval(rand(0, 9)) . strval(rand(0, 9))  . strval(rand(0, 9))  . strval(rand(0, 9)) . strval(rand(0, 9));
+            $bankNum = strval(77777);
+            $controlSymbols = '01';
+            $IBAN = 'LT' . $controlSymbols .$bankNum . $accountNum
         ?>
         <div class="new-accout-data">
             <label for="saskaitos-numeris">Saskaitos Numeris</label>

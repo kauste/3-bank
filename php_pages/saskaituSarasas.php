@@ -3,17 +3,16 @@ session_start();
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $ID = $_GET['item'];
     $klientai = json_decode(file_get_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json'), true);
+    
     $targetElement = $klientai[$ID];
     if ($targetElement['suma'] == 0){
-        unset($klientai[$toDelete]);
-        file_put_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json', json_encode($klientai));
-        header('Location: https://localhost/bit/3-bank/php_pages/saskaituSarasas.php');
+        unset($klientai[$ID]);
+        file_put_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json', json_encode($klientai));     header('Location: https://localhost/bit/3-bank/php_pages/saskaituSarasas.php');
     } else {
         $_SESSION['sum-error'] = $targetElement;
         header('Location: https://localhost/bit/3-bank/php_pages/saskaituSarasas.php?sum-error=1');
     }
-    
-  
+
 }
 ?>
 <!DOCTYPE html>
@@ -42,6 +41,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             </div>
         <?php
         $data = json_decode(file_get_contents('C:/xampp/htdocs/bit/3-bank/data/saskaituData.json'), true);
+        
+        function sortBySurname ($a, $b) {
+            return $a['pavarde'] <=> $b['pavarde'];
+        }
+        usort($data, "sortBySurname");
     
         foreach($data as $item){
         ?>      <form class="saraso-vertes" action="https://localhost/bit/3-bank/php_pages/saskaituSarasas.php?item=<?php echo $item['asmens-kodas']?>" method="post">
@@ -50,8 +54,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <div class="saraso-verte saraso-AK"><?php echo $item['asmens-kodas']?></div>
                     <div class="saraso-verte saraso-sask-nr"><?php echo $item['saskaitos-numeris']?></div>
                     <div class="saraso-verte saraso-sask-likutis"><?php echo $item['suma']?> eur.</div>
-                    <a class="prideti-lesu" href="https://localhost/bit/3-bank/php_pages/pridetiLesas.php">Pridėti lėšų</a>
-                    <a class="nuskaiciuoti-lesu" href="https://localhost/bit/3-bank/php_pages/nuskaiciuotiLesas.php">Nuskaičiuoti lėšas</a>
+                    <a class="prideti-lesu" href="https://localhost/bit/3-bank/php_pages/pridetiLesas.php?id=<?php echo $item['asmens-kodas']?>">Pridėti lėšų</a>
+                    <a class="nuskaiciuoti-lesu" href="https://localhost/bit/3-bank/php_pages/nuskaiciuotiLesas.php?id=<?php echo $item['asmens-kodas']?>">Nuskaičiuoti lėšas</a>
                     <button type="submit">Ištrinti</button>
                 </form>
         <?php
