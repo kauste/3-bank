@@ -63,3 +63,11 @@ body {
     cursor: pointer;
     background-color: rgb(209, 137, 2);
 }
+.choose, .error, .no-error{
+    color: orangered;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    margin-top: 80px;
+}

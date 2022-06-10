@@ -7,7 +7,7 @@ defined('KEY') or die;
             <span>Savers bank</span>
         </div>
         <div class="nav-links">
-        <a class="nav-link" href="./index.php">Pagrindinis</a>
+        <a class="nav-link" href="./pagrindinis.php">Pagrindinis</a>
         <a class="nav-link" href="./saskaituSarasas.php">Sąskaitų sąrašas</a>
         <a class="nav-link" href="./saskaitosSukurimas.php">Sukurti naują sąskaitą</a>
         <a class="nav-link" href="./pridetiLesas.php">Pridėti lėšas</a>

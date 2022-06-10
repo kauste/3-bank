@@ -44,6 +44,9 @@ body {
     justify-content: space-between;
     text-align: center;
 }
+.sign-up.nav-links{
+    width:20%
+}
 .nav-link{
     color: #fff;
     font-weight: 600;
@@ -55,7 +58,9 @@ body {
     line-height: 75px;
     padding: 10px;
     box-shadow: -4px 0px 10px rgba(209, 137, 2, 0.51);
-    
+}
+.sign-up.nav-link{
+    width:50%
 }
 
 .nav-link:hover {
